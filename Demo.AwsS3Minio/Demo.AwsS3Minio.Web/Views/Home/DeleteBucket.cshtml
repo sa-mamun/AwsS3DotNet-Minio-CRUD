@@ -1,0 +1,37 @@
+﻿@model Demo.AwsS3Minio.Web.Models.DeleteBucketModel
+
+@{
+    ViewBag.Title = "DeleteBucket";
+    List<string> bucketList = ViewBag.BucketList;
+}
+
+<h2>DeleteBucket</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("DeleteBucket","Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group row">
+            <div class="col-md-1">
+                @Html.LabelFor(m => m.Name)
+            </div>
+            <div class="col-md-5">
+                @Html.DropDownListFor(m => m.Name, new SelectList(bucketList, "Name"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

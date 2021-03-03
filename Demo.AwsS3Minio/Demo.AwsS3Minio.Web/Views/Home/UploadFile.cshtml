@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Upload a file to S3 Bucket";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Use this area to browse image and upload to S3 bucket.</p>
+@using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @Html.TextBox("file", "", new { type = "file" }) <br />
+        <input type="submit" value="Upload" />
+        @ViewBag.Message
+    </div>
+}
+

@@ -1,0 +1,27 @@
+﻿@using Amazon.S3.Model;
+@{
+    ViewBag.Title = "GetFiles";
+    Dictionary<string, List<S3Object>> bucketList = ViewBag.BucketObjLists;
+}
+
+<h2>Minio Bucket Lists: </h2>
+
+<div class="container">
+    <div>
+        @foreach (KeyValuePair<string, List<S3Object>> kvp in bucketList)
+        {
+            <table style="width: 100%;border: 1px solid black;border-collapse: collapse;">
+                <caption style="color: black; font-size: 20px;">@kvp.Key</caption>
+                <tbody>
+                    @foreach (var item in kvp.Value)
+                    {
+                        <tr style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: left;">
+                            <td style="border: 1px solid black;border-collapse: collapse;padding: 5px;text-align: left;">@item.Key</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
